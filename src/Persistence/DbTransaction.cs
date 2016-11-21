@@ -107,15 +107,5 @@ namespace Persistence
             {
             }
         }
-
-        public static SqlBulkCopy CreateBulkCopy()
-        {
-            if (CurrentTransaction != null)
-            {
-                return new SqlBulkCopy(CurrentTransaction._transaction.Connection, SqlBulkCopyOptions.Default, CurrentTransaction._transaction);
-            }
-
-            return new SqlBulkCopy(ConfigurationManager.ConnectionStrings["Dapper.Example"].ConnectionString);
-        }
     }
 }

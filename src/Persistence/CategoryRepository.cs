@@ -35,9 +35,15 @@ namespace Persistence
             return category;
         }
 
-        public void Add(Category category)
+        public int Add(Category category)
         {
-            throw new System.NotImplementedException();
+            const string sqlQuery = @"INSERT Categories(CategoryName, Description) 
+                                        VALUES (@name, @description) 
+                                        SELECT CAST(SCOPE_IDENTITY() AS INT)";
+            var paramsObj = new {name = category.CategoryName, description = category.Description};
+            category.CategoryID = _conn.Query<int>(sqlQuery, paramsObj).First();
+
+            return category.CategoryID;
         }
 
         public void Update(Category category)

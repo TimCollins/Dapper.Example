@@ -47,10 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
     <Compile Include="CategoryRepository.cs" />
-    <Compile Include="DbTransaction.cs" />
-    <Compile Include="DbUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryObserver.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

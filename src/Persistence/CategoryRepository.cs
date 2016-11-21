@@ -30,7 +30,7 @@ namespace Persistence
                                         FROM Categories
                                         WHERE CategoryID = @id";
 
-            var category = _conn.Query<Category>(sqlQuery, new {id = id}).Single();
+            var category = _conn.Query<Category>(sqlQuery, new {id = id}).FirstOrDefault();
 
             return category;
         }

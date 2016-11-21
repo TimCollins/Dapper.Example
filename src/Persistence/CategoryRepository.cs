@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using Dapper;
 using Domain.Interfaces;
 using Domain.Models;
@@ -9,7 +10,7 @@ namespace Persistence
     internal class CategoryRepository : BaseRepository, ICategoryRepository
     {
         public List<Category> GetAll()
-        {            
+        {
             const string sqlQuery = @"SELECT    CategoryID,
                                                 CategoryName,
                                                 Description,
@@ -20,22 +21,18 @@ namespace Persistence
             return categories;
         }
 
-        private Category ReadCategory(SqlDataReader reader)
-        {
-            var category = new Category
-            {
-                CategoryID = reader.Fetch<int>("CategoryID"),
-                CategoryName = reader.Fetch<string>("CategoryName"),
-                Description = reader.Fetch<string>("Description"),
-                Picture = reader.Fetch<byte[]>("Picture")
-            };
-
-            return category;
-        }
-
         public Category GetById(int id)
         {
-            throw new System.NotImplementedException();
+            const string sqlQuery = @"SELECT	CategoryID,
+                                                CategoryName,
+                                                Description,
+                                                Picture
+                                        FROM Categories
+                                        WHERE CategoryID = @id";
+
+            var category = _conn.Query<Category>(sqlQuery, new {id = id}).Single();
+
+            return category;
         }
 
         public void Add(Category category)
@@ -56,6 +53,19 @@ namespace Persistence
         public void Delete(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        private Category ReadCategory(SqlDataReader reader)
+        {
+            var category = new Category
+            {
+                CategoryID = reader.Fetch<int>("CategoryID"),
+                CategoryName = reader.Fetch<string>("CategoryName"),
+                Description = reader.Fetch<string>("Description"),
+                Picture = reader.Fetch<byte[]>("Picture")
+            };
+
+            return category;
         }
     }
 }

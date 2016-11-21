@@ -8,8 +8,8 @@ namespace Domain.Interfaces
         List<Category> GetAll();
         Category GetById(int id);
         int Add(Category category);
-        void Update(Category category);
-        void Delete(Category category);
-        void Delete(int id);
+        int Update(Category category);
+        int Delete(Category category);
+        int Delete(int id);
     }
 }

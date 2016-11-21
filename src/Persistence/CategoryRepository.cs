@@ -46,32 +46,33 @@ namespace Persistence
             return category.CategoryID;
         }
 
-        public void Update(Category category)
+        public int Update(Category category)
         {
-            throw new System.NotImplementedException();
+            const string sqlQuery = @"UPDATE Categories 
+                                        SET CategoryName = @name,
+                                            Description = @description
+                                        WHERE CategoryID = @id";
+            var paramsObj = new {name = category.CategoryName, description = category.Description, id=category.CategoryID};
+            return _conn.Execute(sqlQuery, paramsObj);
         }
 
-        public void Delete(Category category)
+        public int Delete(Category category)
         {
-            throw new System.NotImplementedException();
+            return DeleteById(category.CategoryID);
         }
 
-        public void Delete(int id)
+        public int Delete(int id)
         {
-            throw new System.NotImplementedException();
+            return DeleteById(id);
         }
 
-        private Category ReadCategory(SqlDataReader reader)
+        private int DeleteById(int id)
         {
-            var category = new Category
-            {
-                CategoryID = reader.Fetch<int>("CategoryID"),
-                CategoryName = reader.Fetch<string>("CategoryName"),
-                Description = reader.Fetch<string>("Description"),
-                Picture = reader.Fetch<byte[]>("Picture")
-            };
+            const string sqlQuery = @"DELETE FROM Categories 
+                                        WHERE CategoryID = @id";
+            var paramsObj = new {id = id};
 
-            return category;
+            return _conn.Execute(sqlQuery, paramsObj);
         }
     }
 }

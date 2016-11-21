@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="DbTransaction.cs" />
     <Compile Include="DbUtil.cs" />

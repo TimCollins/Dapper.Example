@@ -15,7 +15,7 @@ namespace Persistence
                                                 Description,
                                                 Picture
                                         FROM Categories";
-            var categories = _conn.Query<Category>(sqlQuery).AsList();
+            var categories = Query<Category>(sqlQuery).AsList();
 
             return categories;
         }
@@ -29,7 +29,7 @@ namespace Persistence
                                         FROM Categories
                                         WHERE CategoryID = @id";
 
-            var category = _conn.Query<Category>(sqlQuery, new {id = id}).FirstOrDefault();
+            var category = Query<Category>(sqlQuery, new {id}).FirstOrDefault();
 
             return category;
         }
@@ -40,7 +40,7 @@ namespace Persistence
                                         VALUES (@name, @description) 
                                         SELECT CAST(SCOPE_IDENTITY() AS INT)";
             var paramsObj = new {name = category.CategoryName, description = category.Description};
-            category.CategoryID = _conn.Query<int>(sqlQuery, paramsObj).First();
+            category.CategoryID = Query<int>(sqlQuery, paramsObj).First();
 
             return category.CategoryID;
         }
@@ -52,7 +52,7 @@ namespace Persistence
                                             Description = @description
                                         WHERE CategoryID = @id";
             var paramsObj = new {name = category.CategoryName, description = category.Description, id=category.CategoryID};
-            return _conn.Execute(sqlQuery, paramsObj);
+            return Execute(sqlQuery, paramsObj);
         }
 
         public int Delete(Category category)
@@ -69,9 +69,9 @@ namespace Persistence
         {
             const string sqlQuery = @"DELETE FROM Categories 
                                         WHERE CategoryID = @id";
-            var paramsObj = new {id = id};
+            var paramsObj = new {id};
 
-            return _conn.Execute(sqlQuery, paramsObj);
+            return Execute(sqlQuery, paramsObj);
         }
     }
 }

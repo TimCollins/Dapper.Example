@@ -1,23 +1,30 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
+using Dapper;
 
 namespace Persistence
 {
     public class BaseRepository
     {
-        protected IDbConnection _conn { get; set; }
+        internal static string ConnectionString = ConfigurationManager.ConnectionStrings["Dapper.Example"].ConnectionString;
 
-        public BaseRepository(IDbConnection conn)
+        internal static IEnumerable<T> Query<T>(string sql, object param = null)
         {
-            _conn = conn;
-            _conn.Open();
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                return conn.Query<T>(sql, param);
+            }
         }
 
-        public BaseRepository()
+        internal static int Execute(string sql, object param = null)
         {
-            _conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Dapper.Example"].ConnectionString);
-            _conn.Open();
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                return conn.Execute(sql, param);
+            }
         }
     }
 }

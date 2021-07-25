@@ -21,15 +21,14 @@ namespace ConsoleApp
             // Test Add()
             var newCategory = new Category
             {
-                CategoryName = "Test Category 2",
+                CategoryName = "Test Category X",
                 Description = "This is yet another test category"
             };
 
-            var idToDelete = categoryRepository.Add(newCategory);
-            Console.WriteLine($"Added new category with id of {idToDelete}.");
+            var id = categoryRepository.Add(newCategory);
+            Console.WriteLine($"Added new category with id of {id}.");
 
             // Test Update()
-            var id = 9;
             category = categoryRepository.GetById(id);
             category.Description = category.Description + " -- edited";
             var rowsModified = categoryRepository.Update(category);
@@ -37,10 +36,10 @@ namespace ConsoleApp
 
             // Test Delete<T>()
             int ret;
-            category = categoryRepository.GetById(idToDelete);
+            category = categoryRepository.GetById(id);
             if (category == null)
             {
-                Console.WriteLine($"Category {idToDelete} doesn't exist.");
+                Console.WriteLine($"Category {id} doesn't exist.");
             }
             else
             {
@@ -50,7 +49,9 @@ namespace ConsoleApp
             }
 
             // Test Delete(int)
-            id = 11;
+            id = categoryRepository.Add(newCategory);
+            Console.WriteLine($"Added new category with id of {id}.");
+
             ret = categoryRepository.Delete(id);
             if (ret == 0)
             {

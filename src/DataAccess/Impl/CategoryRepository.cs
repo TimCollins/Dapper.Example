@@ -8,8 +8,6 @@ namespace DataAccess.Impl
     {
         public List<Category> GetAll()
         {
-            var cat = new Domain.Category();
-
             const string sqlQuery = @"SELECT    CategoryID,
                                                 CategoryName,
                                                 Description,

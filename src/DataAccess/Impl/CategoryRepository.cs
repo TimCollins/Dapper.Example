@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Dapper;
+using DataAccess.Interfaces;
 using Domain;
 
 namespace DataAccess.Impl
 {
-    public class CategoryRepository : BaseRepository
+    public class CategoryRepository : BaseRepository, ICategoryRepository
     {
         public List<Category> GetAll()
         {
@@ -72,6 +73,5 @@ namespace DataAccess.Impl
 
             return Execute(sqlQuery, paramsObj);
         }
-
     }
 }

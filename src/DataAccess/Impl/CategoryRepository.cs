@@ -36,10 +36,16 @@ namespace DataAccess.Impl
 
         public int Add(Category category)
         {
-            const string sqlQuery = @"INSERT Categories(CategoryName, Description) 
-                                        VALUES (@name, @description) 
+            const string sqlQuery = @"INSERT Categories(CategoryName, Description, Picture) 
+                                        VALUES (@name, @description, @picture) 
                                         SELECT CAST(SCOPE_IDENTITY() AS INT)";
-            var paramsObj = new { name = category.CategoryName, description = category.Description };
+            var paramsObj = new
+            {
+                name = category.CategoryName, 
+                description = category.Description,
+                picture = category.Picture
+            };
+
             category.CategoryID = Query<int>(sqlQuery, paramsObj).First();
 
             return category.CategoryID;

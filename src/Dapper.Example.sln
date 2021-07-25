@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{BD327E32-FA3B-461E-B635-4852C27800C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{CDE60DCF-24BD-49C1-9B3E-D23822372708}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BD327E32-FA3B-461E-B635-4852C27800C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD327E32-FA3B-461E-B635-4852C27800C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD327E32-FA3B-461E-B635-4852C27800C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE60DCF-24BD-49C1-9B3E-D23822372708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE60DCF-24BD-49C1-9B3E-D23822372708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE60DCF-24BD-49C1-9B3E-D23822372708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE60DCF-24BD-49C1-9B3E-D23822372708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

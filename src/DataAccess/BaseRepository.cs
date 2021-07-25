@@ -11,7 +11,8 @@ namespace DataAccess
         public BaseRepository()
         {
             var config = GetConfig();
-            ConnectionString = config.GetConnectionString("dev");
+            var env = config.GetSection("Environment");
+            ConnectionString = config.GetConnectionString(env.Value);
         }
 
         private static IConfiguration GetConfig()

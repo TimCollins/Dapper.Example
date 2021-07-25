@@ -2,7 +2,7 @@
 
 namespace ConsoleApp
 {
-    public class Util
+    internal class Util
     {
         /// <summary>
         /// Waits for the Escape key to be pressed by the user.
@@ -11,7 +11,8 @@ namespace ConsoleApp
         public static void WaitForEscape(string prompt = "Please press Escape to exit...")
         {
             Console.WriteLine(prompt);
-            ConsoleKeyInfo cki = new ConsoleKeyInfo();
+            
+            var cki = new ConsoleKeyInfo();
             while (cki.Key != ConsoleKey.Escape)
             {
                 cki = Console.ReadKey(true);

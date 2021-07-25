@@ -1,13 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccess
 {
-    internal class BaseRepository
+    public class BaseRepository
     {
-        //internal static string ConnectionString = "Data Source=DESKTOP-D4P4L24;Initial Catalog=Chinook;Integrated Security=true;";
-        // TODO: Set this via configuration
+        public BaseRepository()
+        {
+            var config = GetConfig();
+            ConnectionString = config.GetConnectionString("dev");
+        }
+
+        private static IConfiguration GetConfig()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", true, true);
+
+            return builder.Build();
+        }
+
         internal static string ConnectionString = string.Empty;
 
         internal static IEnumerable<T> Query<T>(string sql, object param = null)

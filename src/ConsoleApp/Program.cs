@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using DataAccess.Impl;
 
 namespace ConsoleApp
 {
@@ -6,17 +7,12 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            var config = GetConfig();
+            var categoryRepository = new CategoryRepository();
+            // Test GetAll()
+            var categories = categoryRepository.GetAll();
+            Console.WriteLine("There are {0} categories.", categories.Count);
+
             Util.WaitForEscape();
-        }
-
-        private static IConfiguration GetConfig()
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(System.AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", true, true);
-
-            return builder.Build();
         }
     }
 }

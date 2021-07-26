@@ -7,6 +7,7 @@ The [Microsoft Northwind](https://docs.microsoft.com/en-us/dotnet/framework/data
 
 To-Do
 --
+* Update to support .NET Core
 * Test stored procedures
 * Add more repository classes
 * Better error handling

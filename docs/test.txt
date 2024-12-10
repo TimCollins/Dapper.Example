@@ -1,0 +1,5 @@
+This is a test.
+This is more text.
+This is a change on master
+This is another change on master combined with a change to a file that should be kept.
+This is a change on master after the combined change.

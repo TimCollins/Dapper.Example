@@ -11,3 +11,4 @@ To-Do
 * Add more repository classes
 * Better error handling
 * Unit tests
+* Make everything async
